@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import {
-    createBrowserRouter,
+    createBrowserRouter, createHashRouter,
     RouterProvider,
 } from "react-router-dom";
 import Latestlog from "./components/latestlog/Latestlog";
@@ -25,7 +25,7 @@ const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 
-const router = createBrowserRouter([
+const router = createHashRouter([
     {
         id: "root",
         path: "/:binId/",
