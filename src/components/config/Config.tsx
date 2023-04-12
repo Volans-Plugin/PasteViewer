@@ -25,7 +25,7 @@ function Config() {
         <div className="w-100 bg-slate-900 text-white min-h-screen">
             <Navigation />
             <div className={"flex flex-auto flex-col min-h-screen"}>
-                <pre className={"p-0 grow min-h-screen p-4"}>
+                <pre className={"grow min-h-screen"}>
                     <code className={"min-h-screen language-yaml"}>{data?.config}</code>
                 </pre>
             </div>
