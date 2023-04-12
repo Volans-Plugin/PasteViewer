@@ -1,5 +1,5 @@
 import React from 'react';
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 function Navigation() {
     const params = useParams();
@@ -8,13 +8,13 @@ function Navigation() {
         <header className="flex flex-row flex-auto border-b-2 border-teal-600 bg-teal-500	">
             <ul className={"flex flex-row flex-auto list-none"}>
                 <li className={"p-4"}>
-                    <a href={`/${binId}/latestlog`}>Latest Log</a>
+                    <Link to={`/${binId}/latestlog`}>Latest Log</Link>
                 </li>
                 <li className={"p-4"}>
-                    <a href={`/${binId}/information`}>Information</a>
+                    <Link to={`/${binId}/information`}>Information</Link>
                 </li>
                 <li className={"p-4"}>
-                    <a href={`/${binId}/config`}>Config</a>
+                    <Link to={`/${binId}/config`}>Config</Link>
                 </li>
             </ul>
         </header>
