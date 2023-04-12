@@ -1,19 +1,59 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import {
+    createBrowserRouter,
+    RouterProvider,
+} from "react-router-dom";
+import Latestlog from "./components/latestlog/Latestlog";
+import Config from "./components/config/Config";
+import Information from "./components/information/Information";
+import App from "./App";
+import {QueryClient, QueryClientProvider} from "react-query";
+
+const queryClient = new QueryClient(
+    {
+        defaultOptions: {
+            queries: {
+                cacheTime: 1000 * 60 * 60 * 24, // 24 hours
+            },
+        },
+    }
+);
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    document.getElementById('root') as HTMLElement
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const router = createBrowserRouter([
+    {
+        id: "root",
+        path: "/:binId/",
+        children: [
+            {
+                path: "",
+                element: <App/>,
+            },
+            {
+                path: "latestlog",
+                element: <Latestlog/>,
+            },
+            {
+                path: "config",
+                element: <Config/>,
+            },
+            {
+                path: "information",
+                element: <Information/>,
+            }
+        ]
+    },
+]);
+root.render(
+    <React.StrictMode>
+        <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router}/>
+        </QueryClientProvider>
+    </React.StrictMode>
+);
+
