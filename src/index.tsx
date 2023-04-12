@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import {
-    createBrowserRouter, createHashRouter,
+    createHashRouter,
     RouterProvider,
 } from "react-router-dom";
 import Latestlog from "./components/latestlog/Latestlog";
