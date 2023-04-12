@@ -18,7 +18,7 @@ export async function getZipData({params}: {params: Params}): Promise<ZipInforma
     let zipFile = await ZIP.loadAsync(value!.value as Uint8Array);
     let folder = zipFile.folder("zip");
     let latestLog = await folder?.file("latest.log")?.async("string");
-    let config = await folder?.file("config.conf")?.async("string");
+    let config = await folder?.file("config.yaml")?.async("string");
     let information = await folder?.file("information.yml")?.async("string");
     return Promise.resolve({latestLog: latestLog ?? "", config: config ?? "", information: information ?? ""});
 }

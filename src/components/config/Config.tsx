@@ -26,7 +26,7 @@ function Config() {
             <Navigation />
             <div className={"flex flex-auto flex-col min-h-screen"}>
                 <pre className={"p-0 grow min-h-screen p-4"}>
-                    <code className={"min-h-screen language-nginx"}>{data?.config}</code>
+                    <code className={"min-h-screen language-yaml"}>{data?.config}</code>
                 </pre>
             </div>
         </div>
