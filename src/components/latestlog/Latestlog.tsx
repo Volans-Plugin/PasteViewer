@@ -5,6 +5,8 @@ import hljs from "highlight.js";
 import Navigation from "../navigation/Navigation";
 import "highlight.js/styles/github-dark.css";
 import {useQuery} from "react-query";
+import yaml from "yaml";
+import {Information as ParsedInformations} from "../../models/information/Information";
 
 
 function Latestlog() {
@@ -21,12 +23,21 @@ function Latestlog() {
     });
 
     const data = query.data
+    let parsedYaml = yaml.parse(data?.information ?? "") as ParsedInformations;
+    let snapshot = (parsedYaml?.volans?.version as String ?? "").includes('SNAPSHOT')
+    const classes = () => {
+        if (snapshot) {
+            return "flex flex-auto flex-col h-screen border-l-2 border-amber-200"
+        } else {
+            return "flex flex-auto flex-col h-screen";
+        }
+    }
     return (
         <div className="w-100 bg-slate-900 text-white h-screen">
-            <Navigation />
-            <div className={"flex flex-auto flex-col h-screen"}>
+            <Navigation code={data?.latestLog ?? ""}/>
+            <div className={classes()}>
                 <pre className={"p-0 grow h-screen"}>
-                    <code className={"h-screen language-pgsql"}>{data?.latestLog}</code>
+                    <code className={"h-screen language-accesslog"}>{data?.latestLog}</code>
                 </pre>
             </div>
         </div>
